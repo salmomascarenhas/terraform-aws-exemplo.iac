@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "se_bucket" {
-    bucket = "bucket-estudos-iac-${terraform.workspace}"
+    bucket = "${var.bucket_main}-${terraform.workspace}"
 
     tags = {
         Name = "bucket-estudos-iac-${terraform.workspace}"
