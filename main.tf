@@ -1,10 +1,11 @@
-resource "aws_s3_bucket" "se_bucket" {
-    bucket = "${var.bucket_main}-${terraform.workspace}"
+module "s3" {
+    source = "./modules/s3"
+    s3_bucket_name = "bucket-s3-iac"
+}
 
-    tags = {
-        Name = "bucket-estudos-iac-${terraform.workspace}"
-        Iac = true
-        Environment = "${terraform.workspace}"
-    }
-
+module "cloudfront" {
+    source = "./modules/cloudfront"
+    origin_id = module.s3.bucket_id
+    bucket_domain_name = module.s3.bucket_domain_name
+    depends_on = [module.s3]
 }
