@@ -19,7 +19,7 @@ module "cloudfront" {
 }
 
 module "sqs" {
-  source  = "terraform-aws-modules/sqs/aws"
+  source = "terraform-aws-modules/sqs/aws"
 
   name = "sqs-iac"
 
